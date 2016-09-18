@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<name>NoxxoN</name>
+<version>1.0.0</version>
+<objective>Collect dyes, kill people for string and craft the wools, when you crafted a wool place it at spawn!</objective>
+<authors>
+    <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/>
+</authors>
+<rules>
+    <rule>Try your best!</rule>
+    <rule>Spawnkilling is not allowed!</rule>
+</rules>
+<gamemode>ctw</gamemode>
+<teams>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="orange" color="gold" max="16">Orange</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="180">
+            <point id="blue-spawn-left">156.5,29,855.5</point>
+            <point id="blue-spawn-mid">185.5,29,855.5</point>
+            <point id="blue-spawn-right">214,29,855.5</point>
+        </regions>
+    </spawn>
+    <spawn team="orange" kit="orange-kit">
+        <regions yaw="0">
+            <point id="orange-spawn-right">156.5,29,731.5</point>
+            <point id="orange-spawn-mid">185.5,29,731.5</point>
+            <point id="orange-spawn-left">214,29,731.5</point>
+        </regions>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <point id="obs-spawn">185.5,74,793.5</point>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="64">golden carrot</item>
+        <item slot="3">golden apple</item>
+        <item slot="4" amount="16">arrow</item>
+        <item slot="5" amount="16">egg</item>
+        <potion amplifier="10" duration="5">resistance</potion>
+        <potion amplifier="4" duration="5">regeneration</potion>
+        <potion amplifier="1" duration="5">speed</potion>
+    </kit>
+    <kit id="orange-kit" parents="teams">
+        <helmet unbreakable="true" color="D87F33">leather helmet</helmet>
+        <chestplate unbreakable="true" color="D87F33">gold chestplate</chestplate>
+        <leggings unbreakable="true" color="D87F33">leather leggings</leggings>
+        <boots unbreakable="true" color="D87F33">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <chestplate unbreakable="true" color="334CB2">gold chestplate</chestplate>
+        <leggings unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit id="spawn-kill-prevention-blue" filter="only-orange">
+        <effect duration="oo" amplifier="2">nausea</effect>
+        <effect duration="oo" amplifier="1">slowness</effect>
+        <effect duration="oo" amplifier="1">weakness</effect>
+        <effect duration="oo" amplifier="1">poison</effect>
+    </kit>
+    <kit id="spawn-kill-prevention-orange" filter="only-blue">
+        <effect duration="oo" amplifier="2">nausea</effect>
+        <effect duration="oo" amplifier="1">slowness</effect>
+        <effect duration="oo" amplifier="1">weakness</effect>
+        <effect duration="oo" amplifier="1">poison</effect>
+    </kit>
+</kits>
+<wools>
+    <wool team="orange" color="green" location="185,26,793">
+        <monument>
+            <block>185,30,727</block>
+        </monument>
+    </wool>
+    <wool team="orange" color="pink" location="240,29,793">
+        <monument>
+            <block>214,30,727</block>
+        </monument>
+    </wool>
+    <wool team="orange" color="yellow" location="130,29,793">
+        <monument>
+            <block>156,30,727</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="green" location="185,26,793">
+        <monument>
+            <block>185,30,859</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="pink" location="240,29,793">
+        <monument>
+            <block>214,30,859</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="yellow" location="130,29,793">
+        <monument>
+            <block>156,30,859</block>
+        </monument>
+    </wool>
+</wools>
+<portals>
+    <portal x="-24" filter="only-blue">
+        <region><cuboid min="209,28,853" max="210,33,857"/></region> <!-- blue right -->
+    </portal>
+    <portal x="24" filter="only-blue">
+        <region><cuboid min="190,28,853" max="191,33,857"/></region> <!-- blue mid to right -->
+    </portal>
+    <portal x="-24" filter="only-blue">
+        <region><cuboid min="180,28,853" max="181,33,857"/></region> <!-- blue mid to left -->
+    </portal>
+    <portal x="24" filter="only-blue">
+        <region><cuboid min="161,28,853" max="162,33,857"/></region> <!-- blue left -->
+    </portal>
+    <portal x="24" filter="only-orange">
+        <region><cuboid min="162,28,730" max="161,33,734"/></region> <!-- orange right -->
+    </portal>
+    <portal x="-24" filter="only-orange">
+        <region><cuboid min="180,28,730" max="181,33,734"/></region> <!-- orange mid to right -->
+    </portal>
+    <portal x="24" filter="only-orange">
+        <region><cuboid min="190,28,730" max="191,33,734"/></region> <!-- orange mid to left -->
+    </portal>
+    <portal x="-24" filter="only-orange">
+        <region><cuboid min="209,28,730" max="210,33,734"/></region> <!-- orange left -->
+    </portal>
+</portals>
+<regions>
+    <rectangle id="orange-spawns" min="148,752" max="223,720"/>
+    <rectangle id="blue-spawns" min="223,834" max="146,884"/>
+</regions>
+<filters>
+    <deny id="only-orange">
+        <team>blue</team>
+    </deny>
+    <deny id="only-blue">
+        <team>orange</team>
+    </deny>
+    <apply lend-kit="spawn-kill-prevention-orange" region="orange-spawns"/>
+    <apply lend-kit="spawn-kill-prevention-blue" region="blue-spawns"/>
+    <apply block="never" region="everywhere"/>
+    <apply velocity="0.0,1.5,-1.7"> <!-- blue side jumppad -->
+       <region>
+           <cuboid min="188,28,825" max="183,30,824"/>
+       </region>
+    </apply>
+    <apply velocity="0.0,1.5,1.7"> <!-- orange side jumppad -->
+       <region>
+            <cuboid min="188,28,766" max="183,30,761"/>
+        </region>
+    </apply>
+    <apply velocity="1.7,1.5,0.0"> <!-- mid pink side jumppad -->
+      <region>
+            <cuboid min="194,25,796" max="197,27,791"/>
+        </region>
+    </apply>
+    <apply velocity="-1.7,1.5,0.0"> <!-- mid yellow side jumppad -->
+        <region>
+            <cuboid min="177,25,796" max="174,27,791"/>
+        </region>
+    </apply>
+</filters>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1" material="string"/>
+    </kill-reward>
+</kill-rewards>
+<itemremove>
+    <item>golden carrot</item>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>string</item>
+    <item>leather helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<disabledamage>
+   <damage>fall</damage>
+</disabledamage>
+<broadcasts>
+    <alert after="15s" count="1">by killing enemies you get string! Use string to craft a wool!</alert>
+    <alert after="15s" count="1">Combine a wool and a dye to craft a colored wool. Craft all three colors to win!</alert>
+    <tip after="60s" every="180s" count="oo">By killing enemies you get string! Use string to craft a wool!</tip>
+    <tip after="120s" every="180s" count="oo">Combine a wool and a dye to craft a colored wool. Craft all three colors to win!</tip>
+    <tip after="90s" every="180s" count="oo">Use the portals in your spawn to get to other lanes!</tip>
+</broadcasts>
+</map>

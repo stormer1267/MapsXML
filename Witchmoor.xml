@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Witchmoor 5x5</name>
+<version>1.0.0</version>
+<objective>Kill as many players as you can in 5 minutes</objective>
+<authors>
+    <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/> <!-- Strmr -->
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTr -->
+</authors>
+<contributors>
+    <contributor uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185" contribution="The awesome mapname"/> <!-- McSpider -->
+</contributors>
+<rules>
+    <rule>Try your best!</rule>
+</rules>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="2" max="5" max-overfill="5" show-name-tags="true"/>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point>-27,6,75</point>
+            <point>2,5,78</point>
+            <point>26,15,80</point>
+            <point>17,7,103</point>
+            <point>-15,7,112</point>
+            <point>-11,9,51</point>
+            <point>25,6,36</point>
+            <point>9,6,7</point>
+            <point>6,9,-21</point>
+            <point>5,13,104</point>
+        </regions>
+    </spawn>
+    <default yaw="-90">
+        <regions>
+            <cuboid min="-31,11,17" max="-28,11,19"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" name="Sword">stone sword</item>
+        <item slot="1" name="Bow">bow</item>
+        <item slot="2" amount="10">arrow</item>
+        <helmet color="667F33" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true">iron chestplate</chestplate>
+        <leggings color="667F33" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="667F33" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn delay="2s" blackout="true"/>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+</regions>
+<killreward>
+    <item amount="3" material="arrow"/>
+    <item amount="1" material="golden apple"/>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<name>Chartreuse</name>
+<version>1.6.5</version>
+<objective>Capture the enemy wool and place it at your victory monument!</objective>
+<authors>
+    <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/>
+</authors>
+<gamemode>ctw</gamemode>
+<teams>
+    <team id="blue" color="blue" max="18">Blue</team>
+    <team id="red" color="dark red" max="18">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue-kit" yaw="-90">
+        <regions>
+            <point id="blue-spawn">-83.5,5,-36.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit" yaw="90">
+        <regions>
+            <point id="red-spawn">56.5,5,-36.5</point>
+        </regions>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <point id="obs-spawn">-13.5,14,5.5</point>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="6" amount="32">glass</item>
+        <item slot="4" amount="64">golden carrot</item>
+        <item slot="8">golden apple</item>
+        <item slot="9" amount="64">arrow</item>
+        <item slot="10" amount="64">arrow</item>
+    </kit>
+    <kit id="red-kit" parents="teams">
+        <chestplate unbreakable="true" color="993333">leather chestplate</chestplate>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <chestplate unbreakable="true" color="334CB2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<wools>
+    <wool team="red" color="blue" location="-84.5,22,-34.5">
+        <monument>
+            <block>59,6,-37</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="red" location="57.5,22,-34.5">
+        <monument>
+            <block>-87,6,-37</block>
+        </monument>
+    </wool>
+</wools>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <deny id="deny-red">
+        <team>red</team>
+    </deny>
+    <deny id="deny-blue">
+        <team>blue</team>
+    </deny>
+    <deny id="glass">
+        <material>stained glass:0</material>
+    </deny>
+    <deny id="woolroom-spawner">
+        <material>52</material>
+    </deny>
+    <deny id="woolroom-supplies">
+        <material>chest</material>
+    </deny>
+</filters>
+<regions>
+    <union id="spawns">
+        <cuboid id="blue-spawn" min="-80,0,-39" max="-87,9,-19"/>
+        <cuboid id="red-spawn" min="53,0,-39" max="60,9,-19"/>
+    </union>
+    <union id="woolrooms">
+        <cuboid id="blue-woolroom" min="-80,16,-32" max="-89,26,-39"/>
+        <cuboid id="red-woolroom" min="53,16,-39" max="62,26,-32"/>
+    </union>
+    <apply block="never" region="spawns" message="You are not allowed to edit the the spawn!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="deny-blue" region="blue-woolroom" message="You may not enter your own woolroom!"/>
+    <apply block="deny-blue" region="blue-woolroom" message="You may not edit your own woolroom!"/>
+    <apply enter="deny-red" region="red-woolroom" message="You may not enter your own woolroom!"/>
+    <apply block="deny-red" region="red-woolroom" message="You may not edit your own woolroom!"/>
+    <apply block-break="woolroom-supplies" region="woolrooms" message="You may not break supplies inside your woolroom!"/>
+    <apply block-break="woolroom-spawner" region="woolrooms" message="You may not break the spawner inside your woolroom!"/>
+    <apply block-break="glass" region="everywhere" message="You may not break white stained glass!"/>
+    <apply block="no-void" message="You may not build in the void area!">
+        <region>
+            <complement>
+                <everywhere/>
+                <rectangle id="bridge-region-1" min="-45,-18" max="18,-9"/>
+                <rectangle id="bridge-region-2" min="-57,-39" max="30,-29"/>
+                <rectangle id="bridge-region-3" min="-24,-29" max="-3,-18"/>
+            </complement>
+        </region>
+    </apply>
+</regions>
+<maxbuildheight>23</maxbuildheight>
+<itemremove>
+    <item>iron axe</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>golden carrot</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+</map>
