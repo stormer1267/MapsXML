@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<name>Nevran</name>
+<version>1.0.0</version>
+<objective>Destroy the other team's monuments and capture their wool!</objective>
+<!-- Map authors & contributors. -->
+<authors>
+    <author uuid="62d9830a-0b77-4e21-9d4f-de4b60c68fb5"/> <!-- Sharpie -->
+</authors>
+<contributors>
+    <contributor uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26" contribution="XML help and fixing stuff"/> <!-- Strmr -->
+</contributors>
+<rules>
+    <rule>Try your best!</rule>
+</rules>
+<!-- Map modules, i.e. objectives, regions, spawns. -->
+<teams>
+   <team id="red-team" color="red" max="32" max-overfill="36">Red</team>
+   <team id="blue-team" color="blue" max="32" max-overfill="36">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" amount="64" damage="1" material="log 2"/>
+        <item slot="5" amount="64" material="golden carrot"/>
+        <item slot="6" amount="64" material="smooth brick"/>
+        <item slot="7" amount="64" material="smooth brick"/>
+        <item slot="17" material="arrow"/>
+        <potion amplifier="100" duration="5">heal</potion>
+        <potion amplifier="100" duration="5">damage resistance</potion>
+        <potion amplifier="100" duration="5">regeneration</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="993333" material="leather helmet"/>
+        <chestplate color="993333" material="leather chestplate">
+            <enchantment level="2">protection explosions</enchantment>
+        </chestplate>
+        <boots color="993333" material="leather boots"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="334CB2" material="leather helmet"/>
+        <chestplate color="334CB2" material="leather chestplate">
+            <enchantment level="1">protection explosions</enchantment>
+        </chestplate>
+        <boots color="334CB2" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-kit">
+        <regions>
+            <point yaw="90">112.5,13,27.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit">
+        <regions>
+            <point yaw="-90">-99.5,13,28.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="90">6.5,72,27.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <deny id="deny-red">
+        <team>red-team</team>
+    </deny>
+    <deny id="deny-blue">
+        <team>blue-team</team>
+    </deny>
+    <deny id="not-explosion">
+        <all>
+            <cause>explosion</cause>
+        </all>
+    </deny>
+    <deny id="woolroom-spawner">
+        <material>52</material>
+    </deny>
+    <deny id="woolroom-supplies">
+        <material>chest</material>
+    </deny>
+    <not id="deny-some">
+        <any>
+            <material>beacon</material>
+            <material>stained glass</material>
+            <material>emerald block</material>
+        </any>
+    </not>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="blue-spawn" min="-84,20" max="-101,34"/>
+        <rectangle id="red-spawn" min="97,34" max="113,20"/>
+    </union>
+    <union id="woolrooms">
+        <cylinder id="red-woolroom" base="78,0,27" radius="7" height="90"/>
+        <cylinder id="blue-woolroom" base="-66,0,27" radius="7" height="90"/>
+    </union>
+    <cuboid id="red-emerald-monument" min="34,10,3" max="29,6,-2"/>
+    <cuboid id="red-coal-monument" min="34,10,57" max="29,6,52"/>
+    <cuboid id="blue-emerald-monument" min="-21,10,52" max="-16,6,57"/>
+    <cuboid id="blue-coal-monument" min="-21,10,-2" max="-16,6,3"/>
+    <apply block="never" region="spawns" message=" You may not edit the spawn"/>
+    <apply enter="deny-red" region="blue-spawn" message="You may enter the enemy's spawn!"/>
+    <apply enter="deny-blue" region="red-spawn" message="You may enter the enemy's spawn!"/>
+    <apply block="not-explosion" region="woolrooms"/>
+    <apply enter="only-red" region="blue-woolroom" message="You may not enter your own woolroom!"/>
+    <apply block="deny-blue" use="only-red" region="blue-woolroom" message="You may not edit your own woolroom!"/>
+    <apply enter="only-blue" region="red-woolroom" message="You may not enter your own woolroom!"/>
+    <apply block="deny-red" use="only-blue" region="red-woolroom" message="You may not edit your own woolroom!"/>
+    <apply block-break="woolroom-supplies" region="woolrooms" message="You may not break supplies inside your woolroom!"/>
+    <apply block-break="woolroom-spawner" region="woolrooms" message="You may not break the spawner inside your woolroom!"/>
+    <apply block="deny-some" region="woolrooms"/>
+    <apply block="no-void" message="You may not build in the void area!">
+        <region>
+            <complement>
+                <everywhere/>
+                <cuboid id="field" min="42,0,-75" max="-30,90,-20"/>
+            </complement>
+        </region>
+    </apply>
+</regions>
+<renewables>
+    <renewable interval="15s" grow="true" particles="true" sound="true" avoid-players="3">
+        <region>
+            <region id="everywhere"/>
+        </region>
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+    </renewable>
+</renewables>
+<destroyables owner="red-team" completion="100%">
+    <destroyable name="Emerald Monument" region="red-emerald-monument" materials="emerald block"/>
+    <destroyable name="Coal Monument" region="red-coal-monument" materials="coal block"/>
+</destroyables>
+<destroyables owner="blue-team" completion="100%">
+    <destroyable name="Emerald Monument" region="blue-emerald-monument" materials="emerald block"/>
+    <destroyable name="Coal Monument" region="blue-coal-monument" materials="coal block"/>
+</destroyables>
+<wools>
+    <wool team="blue-team" color="red" craftable="false" location="114,14,27">
+        <monument><block>-102,14,27</block></monument>
+    </wool>
+    <wool team="red-team" color="blue" craftable="false" location="-101,14,27">
+        <monument><block>114,14,27</block></monument>
+    </wool>
+</wools>
+<maxbuildheight>23</maxbuildheight>
+<timelock>on</timelock>
+<itemremove>
+    <item>iron sword</item>
+    <item>coal block</item>
+    <item>emerald block</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>bow</item>
+    <item>iron axe</item>
+    <item>diamond pickaxe</item>
+    <item>arrow</item>
+    <item>smooth brick</item>
+    <item>golden carrot</item>
+    <item>string</item>
+</itemremove>
+</map>
