@@ -1,6 +1,6 @@
 <map proto="1.4.0">
 <name>Acear II</name>
-<version>2.2.1</version>
+<version>2.3.0</version>
 <objective>Break the enemy team's monument.</objective>
 <authors>
     <author uuid="022321a8-578b-4438-b035-8a3ca735639f"/>
@@ -11,9 +11,7 @@
     <!--   Strmr   -->
 </authors>
 <broadcasts>
-    <tip after="10s">
-    You can get iron armor by crafting it in the far left and right islands!
-    </tip>
+    <tip after="10s">You can get iron armor by crafting it in the far left and right islands!</tip>
 </broadcasts>
 <gamemode>dtm</gamemode>
 <teams>
@@ -28,7 +26,7 @@
 </spawn>
 <spawn kit="kit-blue" team="blue-team">
     <regions yaw="90">
-        <cuboid min="156,50,2" max="152,52,-1"/>
+        <cuboid min="156,50,-1" max="152,52,2"/>
     </regions>
 </spawn>
 <default>
@@ -38,34 +36,25 @@
   </default>
 </spawns>
 <kits>
-<kit id="kit-red">
-    <item slot="0" name="Sword">iron sword</item>
-    <item slot="1" name="Bow">bow</item>
-    <item slot="2" unbreakable="true">diamond pickaxe</item>
-    <item slot="3">iron axe</item>
-    <item slot="5" amount="16" damage="1">log</item>
-    <item slot="6" amount="48">leaves</item>
-    <item slot="7" amount="32">cooked beef</item>
-    <item slot="8" amount="1">golden apple</item>
-    <item slot="28" amount="24">arrow</item>
-    <potion duration="oo" amplifier="1">night vision</potion>
-    <chestplate color="993333" unbreakable="false" locked="false">leather chestplate</chestplate>
-    <boots unbreakable="true" locked="false">iron boots</boots>
-</kit>
-<kit id="kit-blue">
-    <item slot="0" name="Sword">iron sword</item>
-    <item slot="1" name="Bow">bow</item>
-    <item slot="2" nunbreakable="true">diamond pickaxe</item>
-    <item slot="3" amount="1" item="iron axe">iron axe</item>
-    <item slot="5" amount="16" damage="1">log</item>
-    <item slot="6" amount="48">leaves</item>
-    <item slot="7" amount="32">cooked beef</item>
-    <item slot="8" amount="1">golden apple</item>
-    <item slot="28" amount="24">arrow</item>
-    <potion duration="oo" amplifier="1">night vision</potion>
-    <chestplate color="334CB2" unbreakable="true" locked="false">leather chestplate</chestplate>
-    <boots unbreakable="true" locked="false">iron boots</boots>
- </kit>
+    <kit id="teams" force="true">
+        <item slot="0" name="Sword">iron sword</item>
+        <item slot="1" name="Bow">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="5" amount="16" damage="1">log</item>
+        <item slot="6" amount="48">leaves</item>
+        <item slot="7" amount="32">cooked beef</item>
+        <item slot="8" amount="1">golden apple</item>
+        <item slot="28" amount="24">arrow</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <boots unbreakable="true" locked="false">iron boots</boots>
+    </kit>
+    <kit id="kit-red" parents="teams">
+        <chestplate color="993333" unbreakable="false" locked="false">leather chestplate</chestplate>
+    </kit>
+    <kit id="kit-blue" parents="teams">
+        <chestplate color="334CB2" unbreakable="true" locked="false">leather chestplate</chestplate>
+    </kit>
 </kits>
 <destroyables name="Monument" materials="obsidian" completion="100%" mode-changes="true">
     <destroyable owner="blue-team">
@@ -75,7 +64,7 @@
     </destroyable>
     <destroyable owner="red-team">
       <region>
-        <cuboid min="-1,5,1" max="-3,12,-0"/>
+        <cuboid min="-3,5,-0" max="-1,12,1"/>
       </region>
     </destroyable>
 </destroyables>
@@ -87,9 +76,9 @@
 </disabledamage>
 <respawn delay="2s" blackout="true"/>
 <regions>
-    <rectangle id="redfront" min="-67,9" max="-40,-9"/>
+    <rectangle id="redfront" min="-67,-9" max="-40,9"/>
     <apply block="never" region="redfront" message="You may not edit the spawn area"/>
-    <rectangle id="bluefront" min="154,-9" max="127,9"/>
+    <rectangle id="bluefront" min="127,-9" max="154,9"/>
     <apply block="never" region="bluefront" message="You may not edit the spawn area"/>
     <cylinder id="one" base="-65,1,0" radius="7" height="50"/>
     <apply block="never" region="one" message="You may not edit the spawn area"/>
@@ -102,7 +91,7 @@
     </apply>
     <apply block="never" message="You may not edit blocks outside of the map">
         <region>
-            <negative><rectangle min="-32,30" max="119,-29"/></negative>
+            <negative><rectangle min="-32,-29" max="119,30"/></negative>
         </region>
     </apply>
 </regions>
