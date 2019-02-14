@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map proto="1.4.0">
 <name>Government 5x5</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 <objective>Kill as many players as you can in 5 minutes</objective>
 <authors>
     <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/> <!-- Strmr -->
@@ -16,7 +16,7 @@
 <time>5m</time>
 <players min="2" max="5" max-overfill="0" show-name-tags="true"/>
 <spawns>
-    <spawn kit="spawn-kit" spread="true">
+    <spawn kit="spawn-kit" safe="true" spread="true">
         <regions>
             <point>132,15,113</point>
             <point>132,15,152</point>
